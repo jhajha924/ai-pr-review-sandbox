@@ -1,13 +1,15 @@
+import os
 import sqlite3
 
-DB_PASSWORD = "P@ssw0rd123"
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
 
 
 def connect(path):
-    conn = sqlite3.connect(path)
-    return conn
+    """開啟 sqlite 連線。"""
+    return sqlite3.connect(path)
 
 
 def find_user(conn, name):
-    sql = "SELECT * FROM users WHERE name = '" + name + "'"
-    return conn.execute(sql).fetchall()
+    """以參數化查詢取得指定名稱的使用者。"""
+    sql = "SELECT * FROM users WHERE name = ?"
+    return conn.execute(sql, (name,)).fetchall()
