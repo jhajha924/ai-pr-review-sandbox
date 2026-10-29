@@ -16,5 +16,3 @@ jobs:
   ai-review:
     uses: jhajha924/ai-pr-review/.github/workflows/ai-review.yml@v1
     secrets: inherit
-    with:
-      max-diff-chars: 80000
